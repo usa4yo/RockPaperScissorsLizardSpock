@@ -63,10 +63,8 @@ public class RPSLSDriver {
             if(playMode == OPTION_A){
                 System.out.println(NAME_OF_PLAYER + "1");
                 String player1 = kb.nextLine();
-                System.out.println("Welcome " + player1);
                 System.out.println(NAME_OF_PLAYER + "2");
                 String player2 = kb.nextLine();
-                System.out.println("Welcome " + player2);                
                 optionHumanVsHuman(player1, player2);
                 displayFinalScore();
             } else if(playMode == OPTION_B) {
@@ -94,7 +92,10 @@ public class RPSLSDriver {
     }   // Ending bracket of main method
 
     private static void optionHumanVsHuman(String player1, String player2){
-        System.out.println("TODO Execute Human vs. Human");
+        System.out.println("Welcome " + player1 + " and " + player2);
+        System.out.println();
+        System.out.println("Let's play!");
+        System.out.println();
     }   // Ending bracket of displayHumanVsHuman method
 
     private static void optionHumanVsComputer(String player1, String player2){
