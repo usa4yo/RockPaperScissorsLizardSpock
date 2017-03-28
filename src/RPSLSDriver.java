@@ -14,9 +14,13 @@ import java.util.Scanner;
 
 public class RPSLSDriver {
 
+    private RPSLSHumanPlayer player1;
+    private RPSLSHumanPlayer player2;        
+
+    private RPSLSComputerPlayer computer1;
+    private RPSLSComputerPlayer computer2;
+	
     private static char playMode;
-    private static String computer1                     = "Dumb";
-    private static String computer2                     = "Dumber";            
     
     private static final char OPTION_A                  = 'A';
     private static final char OPTION_B                  = 'B';
@@ -30,6 +34,7 @@ public class RPSLSDriver {
     
     private static final String REQUEST_WHAT_MODE_TO_PLAY = "Please select a mode?";
     private static final String NAME_OF_PLAYER = "What is the name of player ";
+    private static final String NAME_OF_COMPUTER = "What is the name of the computer player ";    
     private static final String OPTION_EXIT = "You have choosen to exit from the game. Please come back later... Aurevoir!";    
     private static final String INVALID_MODE = "This is an invalid selection. Please select between A, B, C or X to Exit";    
     
@@ -66,6 +71,7 @@ public class RPSLSDriver {
       
             playMode = kb.nextLine().toUpperCase().charAt(0);;
     
+           
             System.out.println("You have choosen : " + playMode);
             System.out.println();
 
@@ -76,16 +82,24 @@ public class RPSLSDriver {
                 System.out.println(NAME_OF_PLAYER + "2");
                 player = kb.nextLine();                
                 player2 = new RPSLSHumanPlayer(player);
-                optionHumanVsHuman(getRPSLSHumanPlayer(player1), getRPSLSHumanPlayer(player2));
+                optionHumanVsHuman(player1, player2);
                 displayFinalScore();
             } else if(playMode == OPTION_B) {
                 System.out.println(NAME_OF_PLAYER + "1");
                 player = kb.nextLine();
                 player1 = new RPSLSHumanPlayer(player);
-                
+                System.out.println(NAME_OF_COMPUTER + "1");
+                player = kb.nextLine();                
+                computer1 = new RPSLSComputerPlayer(player);
                 optionHumanVsComputer(player1, computer1); 
                 displayFinalScore();                
             } else if(playMode == OPTION_C) {
+                System.out.println(NAME_OF_COMPUTER + "1");
+                player = kb.nextLine();
+                computer1 = new  RPSLSComputerPlayer(player);
+                System.out.println(NAME_OF_COMPUTER + "2");
+                player = kb.nextLine();                
+                computer2 = new RPSLSComputerPlayer(player);
                 optionComputerVsComputer(computer1, computer2);               
                 displayFinalScore();
             } else if(playMode == OPTION_X) {
@@ -103,19 +117,25 @@ public class RPSLSDriver {
         
     }   // Ending bracket of main method
 
-    private static void optionHumanVsHuman(String player1, String player2){
-        System.out.println("Welcome " + player1 + " and " + player2);
+	private static void optionHumanVsHuman(RPSLSHumanPlayer player1, RPSLSHumanPlayer player2){
+        System.out.println("Welcome " + player1.getName() + " and " + player2.getName());
         System.out.println();
         System.out.println("Let's play!");
         System.out.println();
     }   // Ending bracket of displayHumanVsHuman method
 
-    private static void optionHumanVsComputer(String player1, String computer1){
-        System.out.println("Welcome " + player1 + " you'll be playing with computer : " + computer1);  
+    private static void optionHumanVsComputer(RPSLSHumanPlayer player1, RPSLSComputerPlayer computer1){
+        System.out.println("Welcome " + player1.getName() + " and " + computer1.getName());
+        System.out.println();
+        System.out.println("Let's play!");
+        System.out.println();
     }   // Ending bracket of optionHumanVsComputer method
 
-    private static void optionComputerVsComputer(String Computer1, String computer2){
-        System.out.println("TODO Execute Computer vs. Computer");
+    private static void optionComputerVsComputer(RPSLSComputerPlayer computer1, RPSLSComputerPlayer computer2){
+        System.out.println("Welcome " + computer1.getName() + " and " + computer2.getName()); 
+        System.out.println();
+        System.out.println("Let's play!");
+        System.out.println();
     }   // Ending bracket of optionComputerVsComputer method
 
     private static void displayFinalScore(){
