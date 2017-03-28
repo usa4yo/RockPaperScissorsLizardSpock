@@ -14,11 +14,11 @@ import java.util.Scanner;
 
 public class RPSLSDriver {
 
-    private RPSLSHumanPlayer player1;
-    private RPSLSHumanPlayer player2;        
-
-    private RPSLSComputerPlayer computer1;
-    private RPSLSComputerPlayer computer2;
+//    private RPSLSHumanPlayer player1;
+//    private RPSLSHumanPlayer player2;        
+//
+//    private RPSLSComputerPlayer computer1;
+//    private RPSLSComputerPlayer computer2;
 	
     private static char playMode;
     
@@ -34,7 +34,7 @@ public class RPSLSDriver {
     
     private static final String REQUEST_WHAT_MODE_TO_PLAY = "Please select a mode?";
     private static final String NAME_OF_PLAYER = "What is the name of player ";
-    private static final String NAME_OF_COMPUTER = "What is the name of the computer player ";    
+    private static final String NAME_OF_COMPUTER = "What is the name of the computer ";    
     private static final String OPTION_EXIT = "You have choosen to exit from the game. Please come back later... Aurevoir!";    
     private static final String INVALID_MODE = "This is an invalid selection. Please select between A, B, C or X to Exit";    
     
@@ -118,26 +118,48 @@ public class RPSLSDriver {
     }   // Ending bracket of main method
 
 	private static void optionHumanVsHuman(RPSLSHumanPlayer player1, RPSLSHumanPlayer player2){
-        System.out.println("Welcome " + player1.getName() + " and " + player2.getName());
-        System.out.println();
-        System.out.println("Let's play!");
-        System.out.println();
+        System.out.println("Welcome " + player1.getHuman() + " and " + player2.getHuman());
+        RPSLSGame player;
+        
+        for (int i = 1; i < 6; ++i) {
+            player1.setTurn(i);
+            player = new RPSLSGame(i);
+            player1.setScore(0);
+            System.out.println(player1.getHuman() + ", for your round " + player1.getTurn() + " you got: " + player1.getScore());
+            player2.setTurn(i);
+            player2.setScore(1);
+            System.out.println(player2.getHuman() + ", for your round " + player2.getTurn() + " you got: " + player2.getScore());
+            }
+            
     }   // Ending bracket of displayHumanVsHuman method
 
     private static void optionHumanVsComputer(RPSLSHumanPlayer player1, RPSLSComputerPlayer computer1){
-        System.out.println("Welcome " + player1.getName() + " and " + computer1.getName());
-        System.out.println();
-        System.out.println("Let's play!");
-        System.out.println();
+        System.out.println("Welcome " + player1.getHuman() + " and " + computer1.getComputer());
+        for (int i = 0; i < 5; ++i) {
+            System.out.println(player1 + ", for your round " + i + "you got: " + i);
+            System.out.println(computer1 + ", for your round " + i + "you got: " + i);
+        }
+    
     }   // Ending bracket of optionHumanVsComputer method
 
     private static void optionComputerVsComputer(RPSLSComputerPlayer computer1, RPSLSComputerPlayer computer2){
-        System.out.println("Welcome " + computer1.getName() + " and " + computer2.getName()); 
-        System.out.println();
-        System.out.println("Let's play!");
-        System.out.println();
+        System.out.println("Welcome " + computer1.getComputer() + " and " + computer2.getComputer()); 
+        for (int i = 0; i < 5; ++i) {
+            System.out.println(computer1 + ", for your round " + i + "you got: " + i);
+            System.out.println(computer2 + ", for your round " + i + "you got: " + i);
+            }
+
     }   // Ending bracket of optionComputerVsComputer method
 
+
+    private static void playGame(String playerA, String playerB){
+        System.out.println();        
+        System.out.println("Let's play!");
+        System.out.println();
+
+    }   // Ending bracket of playGame method
+    
+    
     private static void displayFinalScore(){
         System.out.println("TODO Execute Display the final score");
     }   // Ending bracket of displayFinalScore method

@@ -2,49 +2,67 @@
 
 public class RPSLSHumanPlayer {
 
-    String name;
-    String winner;
-	/**
-	 * @param name
-	 * @param winner
-	 */
-	public RPSLSHumanPlayer(String player, String winner) {
-		super();
-		this.name = player;
-		this.winner = winner;
-	}	// Ending bracket of constructor RPSLSHumanPlayer
-	
-	public RPSLSHumanPlayer(String player) {
-		this.name = player;
-	}	// Ending bracket of constructor RPSLSHumanPlayer
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}	// Ending bracket of getName
-	
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}	// Ending bracket of setName
-	
-	/**
-	 * @return the winner
-	 */
-	public String getWinner() {
-		return winner;
-	}	// Ending bracket of getWinner
-	
-	/**
-	 * @param winner the winner to set
-	 */
-	public void setWinner(String winner) {
-		this.winner = winner;
-	}	// Ending bracket of setWinner
+    /**
+     * @param human
+     * @param turn
+     * @param score
+     */
     
-        
+    String human;
+    int turn;
+    int score;
+    
+    public RPSLSHumanPlayer(String player, int round, int count) {
+        super();
+        this.human = player;
+        this.turn = round;
+        this.score = count;
+    }   // Ending bracket of constructor RPSLSHumanPlayer
+
+    public RPSLSHumanPlayer(String player) {
+        this.human = player;
+    }   // Ending bracket of constructor RPSLSHumanPlayer
+
+    /**
+     * @return the human
+     */
+    public String getHuman() {
+        return human;
+    }
+
+    /**
+     * @param human the human to set
+     */
+    public void setHuman(String human) {
+        this.human = human;
+    }
+
+    /**
+     * @return the turn
+     */
+    public int getTurn() {
+        return turn;
+    }
+
+    /**
+     * @param turn the turn to set
+     */
+    public void setTurn(int turn) {
+        this.turn = turn;
+    }
+
+    /**
+     * @return the score
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * @param score the score to set
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
 }	// Ending bracket of RPSLSHumanPlayer

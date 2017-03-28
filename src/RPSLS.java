@@ -1,32 +1,29 @@
-import java.awt.Color;
+
 
 public enum RPSLS {
-    Rock("Rock", Color.ORANGE), 
-    Paper("Paper", Color.YELLOW),
-    Scissors("Scissor", Color.MAGENTA),
-    Lizard("Lizard", Color.GREEN),
-    Spock("Spock", Color.BLUE);
+    Rock("Rock"), 
+    Paper("Paper"),
+    Scissors("Scissors"),
+    Lizard("Lizard"),
+    Spock("Spock");
+
+    private final String move;
+
+    public static RPSLS getRandom() {
+        return values()[(int) (Math.random() * values().length)];
+    }
     
-    private final String code;
-    private final Color color;
-    
-    private RPSLS(String newCode, Color newColor){
-        this.code = newCode;
-        this.color = newColor;
+    private RPSLS(String newMove){
+        this.move = newMove;
     }   // Ending bracket of the constructor RPSLS
 
     /**
-     * @return the name
+     * @return the move
      */
-    public String getCode() {
-        return code;
-    }   // Ending bracket of the getter getName
+    public String getMove() {
+        return move;
+    }
 
-    /**
-     * @return the color
-     */
-    public Color getColor() {
-        return color;
-    }   // Ending bracket of the getter getColor
 
 }   // Ending bracket of enum RPSLS
+
