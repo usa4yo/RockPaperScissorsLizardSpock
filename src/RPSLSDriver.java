@@ -7,19 +7,13 @@ import java.util.Scanner;
  * @author      : ar25 (Yves Ouellet)
  * Email        : yves.ouellet@bcbssc.com
  * Creation     : 2017-03-24
- * Last Mod.    : 2017-03-24
- * Due Date     : 2017-03-28
+ * Last Mod.    : 2017-03-30
+ * Due Date     : 2017-03-30
 
  */
 
 public class RPSLSDriver {
 
-//    private RPSLSHumanPlayer player1;
-//    private RPSLSHumanPlayer player2;        
-//
-//    private RPSLSComputerPlayer computer1;
-//    private RPSLSComputerPlayer computer2;
-	
     private static char playMode;
     
     private static final char OPTION_A                  = 'A';
@@ -48,10 +42,6 @@ public class RPSLSDriver {
         RPSLSHumanPlayer player1;
         RPSLSHumanPlayer player2;        
 
-        RPSLSComputerPlayer computer1;
-        RPSLSComputerPlayer computer2;
-        
-        
         //*****************************************************************
         // Request the mode of play
         //  
@@ -82,26 +72,23 @@ public class RPSLSDriver {
                 System.out.println(NAME_OF_PLAYER + "2");
                 player = kb.nextLine();                
                 player2 = new RPSLSHumanPlayer(player);
-                optionHumanVsHuman(player1, player2);
-                displayFinalScore();
+                optionPlayGame(player1, player2);
             } else if(playMode == OPTION_B) {
                 System.out.println(NAME_OF_PLAYER + "1");
                 player = kb.nextLine();
                 player1 = new RPSLSHumanPlayer(player);
                 System.out.println(NAME_OF_COMPUTER + "1");
                 player = kb.nextLine();                
-                computer1 = new RPSLSComputerPlayer(player);
-                optionHumanVsComputer(player1, computer1); 
-                displayFinalScore();                
+                player2 = new RPSLSHumanPlayer(player);
+                optionPlayGame(player1, player2); 
             } else if(playMode == OPTION_C) {
                 System.out.println(NAME_OF_COMPUTER + "1");
                 player = kb.nextLine();
-                computer1 = new  RPSLSComputerPlayer(player);
+                player1 = new  RPSLSHumanPlayer(player);
                 System.out.println(NAME_OF_COMPUTER + "2");
                 player = kb.nextLine();                
-                computer2 = new RPSLSComputerPlayer(player);
-                optionComputerVsComputer(computer1, computer2);               
-                displayFinalScore();
+                player2 = new RPSLSHumanPlayer(player);
+                optionPlayGame(player1, player2);               
             } else if(playMode == OPTION_X) {
                 playMode = OPTION_X;
                 System.out.println(OPTION_EXIT);
@@ -117,51 +104,50 @@ public class RPSLSDriver {
         
     }   // Ending bracket of main method
 
-	private static void optionHumanVsHuman(RPSLSHumanPlayer player1, RPSLSHumanPlayer player2){
-        System.out.println("Welcome " + player1.getHuman() + " and " + player2.getHuman());
-        RPSLSGame player;
+	private static void optionPlayGame(RPSLSHumanPlayer player1, RPSLSHumanPlayer player2){
+        System.out.println("Welcome " + player1.getName() + " and " + player2.getName());
+        System.out.println();
+        
+        int result;
+        int totalPlayer1 = 0;
+        int totalPlayer2 = 0;
         
         for (int i = 1; i < 6; ++i) {
-            player1.setTurn(i);
-            player = new RPSLSGame(i);
-            player1.setScore(0);
-            System.out.println(player1.getHuman() + ", for your round " + player1.getTurn() + " you got: " + player1.getScore());
-            player2.setTurn(i);
-            player2.setScore(1);
-            System.out.println(player2.getHuman() + ", for your round " + player2.getTurn() + " you got: " + player2.getScore());
-            }
+            player1.setRound(i);
+            player1.setMove(RPSLS.getRandom());
+            player2.setRound(i);
+            player2.setMove(RPSLS.getRandom());            
+            result = RPSLS.EvaluateResult(player1.getMove(), player2.getMove());
+
+            if (result == 0){
+                player1.setScore(result);
+                player2.setScore(result);
+            } else if (result == 1) {
+                player1.setScore(result);
+                player2.setScore(0);
+            } else {
+                player1.setScore(0);
+                player2.setScore(result);
+                
+            }   // Ending bracket of If statement
+
+            totalPlayer1 = totalPlayer1 + player1.getScore();
+            totalPlayer2 = totalPlayer2 + Math.abs(player2.getScore());
             
+            System.out.println(player1.getName() + ", for your round " + player1.getRound() + " you got: " + player1.getMove() + " you score " + player1.getScore());
+            System.out.println(player2.getName() + ", for your round " + player2.getRound() + " you got: " + player2.getMove() + " you score " + Math.abs(player2.getScore()));
+            System.out.println();
+            
+        }   // Ending bracket of for loop
+
+        if (totalPlayer1 == totalPlayer2){
+            System.out.println("Congratulation to you " + player1.getName() + " and " + player2.getName() + " , you have tied!");
+        } else if (totalPlayer1 > totalPlayer2){
+            System.out.println("Congratulation to " + player1.getName() + " you have won " + totalPlayer1 + " to " + totalPlayer2);
+        } else {
+            System.out.println("Congratulation to " + player2.getName() + " you have won " + totalPlayer2 + " to " + totalPlayer1);
+        }   // Ending bracket of if Statement
+        
     }   // Ending bracket of displayHumanVsHuman method
 
-    private static void optionHumanVsComputer(RPSLSHumanPlayer player1, RPSLSComputerPlayer computer1){
-        System.out.println("Welcome " + player1.getHuman() + " and " + computer1.getComputer());
-        for (int i = 0; i < 5; ++i) {
-            System.out.println(player1 + ", for your round " + i + "you got: " + i);
-            System.out.println(computer1 + ", for your round " + i + "you got: " + i);
-        }
-    
-    }   // Ending bracket of optionHumanVsComputer method
-
-    private static void optionComputerVsComputer(RPSLSComputerPlayer computer1, RPSLSComputerPlayer computer2){
-        System.out.println("Welcome " + computer1.getComputer() + " and " + computer2.getComputer()); 
-        for (int i = 0; i < 5; ++i) {
-            System.out.println(computer1 + ", for your round " + i + "you got: " + i);
-            System.out.println(computer2 + ", for your round " + i + "you got: " + i);
-            }
-
-    }   // Ending bracket of optionComputerVsComputer method
-
-
-    private static void playGame(String playerA, String playerB){
-        System.out.println();        
-        System.out.println("Let's play!");
-        System.out.println();
-
-    }   // Ending bracket of playGame method
-    
-    
-    private static void displayFinalScore(){
-        System.out.println("TODO Execute Display the final score");
-    }   // Ending bracket of displayFinalScore method
-    
 }   // Ending bracket of RPSLSDriver

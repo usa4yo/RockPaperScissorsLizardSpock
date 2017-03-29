@@ -1,68 +1,68 @@
 
 public class RPSLSComputerPlayer {
 
-    String computer;
-    int turn;
-    int score;
+    String name;
+    int round;
+    String move;
     
 	/**
-	 * @param computer
-	 * @param turn
-	 * @param score
+	 * @param name
+	 * @param round
+	 * @param move
 	 */
     
-	public RPSLSComputerPlayer(String player, int round, int count) {
+	public RPSLSComputerPlayer(String name, int round, String move) {
 		super();
-		this.computer = player;
-		this.turn = round;
-		this.score = count;
+		this.name = name;
+		this.round = round;
+		this.move = move;
 	}	// Ending bracket of constructor RPSLSComputerComputer
 	
-	public RPSLSComputerPlayer(String player) {
+	public RPSLSComputerPlayer(String name) {
 		super();
-		this.computer = player;
+		this.name = name;
 	}	// Ending bracket of constructor RPSLSComputerComputer
 
 	/**
 	 * @return the computer
 	 */
-	public String getComputer() {
-		return computer;
+	public String getName() {
+		return name;
 	}	// Ending bracket of getName
 	
 	/**
 	 * @param name the name to set
 	 */
-	public void setComputer(String player) {
-		this.computer = player;
+	public void setName(String name) {
+		this.name = name;
 	}	// Ending bracket of setName
 	
 	/**
-	 * @return the turn
+	 * @return the round
 	 */
-	public int getTurn() {
-		return turn;
-	}	// Ending bracket of getWinner
+	public int getRound() {
+		return round;
+	}	// Ending bracket of getRound
 	
 	/**
-	 * @param winner the winner to set
+	 * @param round the round to set
 	 */
-	public void setTurn(int round) {
-		this.turn = round;
-	}	//Ending bracket of setWinner
+	public void setRound(int round) {
+		this.round = round;
+	}	//Ending bracket of setRound
 
     /**
-     * @return the score
+     * @return the move
      */
-    public int getScore() {
-        return score;
-    }   // End bracket of getScore
+    public String getMove() {
+        return move;
+    }   // End bracket of getMove
 
     /**
-     * @param score the score to set
+     * @param move the move to set
      */
-    public void setScore(int score) {
-        this.score = score;
-    }   // End bracket of setScore
+    public void setMove(String move) {
+        this.move = move;
+    }   // End bracket of setMove
 	
 }	// Ending bracket of RPSLSComputerPlayer
